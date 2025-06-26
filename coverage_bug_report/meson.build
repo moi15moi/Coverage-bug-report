@@ -1,5 +1,6 @@
 python_sources = [
     '__init__.py',
+    'a_cpp_module.pyi',
 ]
 
 py.install_sources(
