@@ -1,0 +1,59 @@
+[project]
+name = "CoverageBugReport"
+description = "Coverage Bug Report."
+authors = [
+    { name = "moi15moi", email = "moi15moismokerlolilol@gmail.com" },
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Typing :: Typed",
+]
+dynamic = ["version"]
+
+[project.urls]
+Source = "https://github.com/moi15moi/VideoTimestamps/"
+Tracker = "https://github.com/moi15moi/VideoTimestamps/issues/"
+
+[project.optional-dependencies]
+dev = [
+  "coverage>=7.0.0",
+  "mypy>=1.0.0",
+  "pytest>=8.0.0",
+  "ruff>=0.8.4",
+]
+
+[build-system]
+requires = ["meson-python", "pybind11"]
+build-backend = "mesonpy"
+
+[tool.meson-python.args]
+setup = ["--default-library=static"]
+
+[tool.mypy]
+exclude = ["build", "subprojects"]
+files = ["."]
+warn_unused_configs = true
+strict = true
+
+[tool.coverage.report]
+exclude_also = [
+  # Don't complain about abstract methods, they aren't run:
+  "@(abc\\.)?abstractmethod",
+]
+
+[tool.ruff.lint]
+exclude = ["__init__.py"]
+
+[tool.pytest.ini_options]
+addopts = "--ignore=subprojects/"
